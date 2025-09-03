@@ -108,10 +108,10 @@ const SurakshaKavach = () => {
         onLogout={handleLogout}
       />
       
-      <div className="flex h-[calc(100vh-80px)]">
+      <div className="flex h-[calc(100vh-64px)] sm:h-[calc(100vh-80px)]">
         <Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
         
-        <main className="flex-1 overflow-y-auto p-8">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 lg:ml-0">
           {renderCurrentPage()}
         </main>
       </div>

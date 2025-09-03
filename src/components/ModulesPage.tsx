@@ -129,11 +129,11 @@ const ModulesPage = () => {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">Learning Modules</h1>
-          <p className="text-muted-foreground">Interactive disaster preparedness training with videos, simulations, activities, and assessments</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">Learning Modules</h1>
+          <p className="text-muted-foreground text-sm sm:text-base">Interactive disaster preparedness training with videos, simulations, activities, and assessments</p>
         </div>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -143,7 +143,7 @@ const ModulesPage = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {modules.map((module) => {
           const Icon = module.icon;
           const isDisabled = module.status === 'locked';
@@ -152,7 +152,7 @@ const ModulesPage = () => {
             <div
               key={module.id}
               onClick={() => handleModuleClick(module)}
-              className={`p-6 rounded-lg border transition-all duration-200 ${getStatusColor(module.status)} ${
+              className={`p-4 sm:p-6 rounded-lg border transition-all duration-200 ${getStatusColor(module.status)} ${
                 isDisabled ? 'cursor-not-allowed' : 'cursor-pointer hover:shadow-lg hover:scale-[1.02]'
               }`}
             >
@@ -171,18 +171,18 @@ const ModulesPage = () => {
                 {getStatusIcon(module.status)}
               </div>
 
-              <h3 className="text-lg font-semibold text-foreground mb-2">{module.title}</h3>
-              <p className="text-sm text-muted-foreground mb-4">{module.description}</p>
+              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2">{module.title}</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground mb-4">{module.description}</p>
 
-              <div className="space-y-3">
-                <div className="flex justify-between text-sm text-muted-foreground">
+              <div className="space-y-2 sm:space-y-3">
+                <div className="flex justify-between text-xs sm:text-sm text-muted-foreground">
                   <span>{module.lessons} lessons</span>
                   <span>{module.duration}</span>
                 </div>
 
                 {module.status !== 'locked' && (
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-sm">
+                  <div className="space-y-1 sm:space-y-2">
+                    <div className="flex justify-between text-xs sm:text-sm">
                       <span className="text-muted-foreground">Progress</span>
                       <span className="text-foreground font-medium">{module.progress}%</span>
                     </div>
@@ -201,7 +201,7 @@ const ModulesPage = () => {
                 <div className="flex items-center gap-2">
                   <button
                     disabled={isDisabled}
-                    className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+                    className={`flex-1 py-2 px-3 sm:px-4 rounded-md text-xs sm:text-sm font-medium transition-colors ${
                       isDisabled
                         ? 'bg-muted text-muted-foreground cursor-not-allowed'
                         : module.status === 'completed'
