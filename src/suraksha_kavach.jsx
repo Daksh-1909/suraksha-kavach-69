@@ -7,8 +7,13 @@ import ModulesPage from './components/ModulesPage';
 import AIChat from './components/AIChat';
 import EvacuationMap from './components/EvacuationMap';
 import SOSPage from './components/SOSPage';
+import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
+import ForgotPasswordPage from './components/ForgotPasswordPage';
 
 const SurakshaKavach = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authPage, setAuthPage] = useState('login'); // 'login', 'register', 'forgot-password'
   const [currentPage, setCurrentPage] = useState('home');
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [profile, setProfile] = useState({
@@ -26,6 +31,31 @@ const SurakshaKavach = () => {
   const cancelEdit = () => {
     setEditedProfile(profile);
     setIsEditingProfile(false);
+  };
+
+  const handleLogin = (credentials) => {
+    // Simulate login - in real app, this would validate with backend
+    setProfile({
+      name: 'Arjun Sharma',
+      email: credentials.email,
+      school: 'Delhi Public School'
+    });
+    setIsAuthenticated(true);
+  };
+
+  const handleRegister = (userData) => {
+    // Simulate registration - in real app, this would create account in backend
+    setProfile({
+      name: userData.name,
+      email: userData.email,
+      school: userData.school
+    });
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setCurrentPage('home');
   };
 
   const renderCurrentPage = () => {
@@ -47,6 +77,24 @@ const SurakshaKavach = () => {
     }
   };
 
+  // Show authentication pages if not logged in
+  if (!isAuthenticated) {
+    switch (authPage) {
+      case 'register':
+        return <RegisterPage onRegister={handleRegister} onGoToLogin={() => setAuthPage('login')} />;
+      case 'forgot-password':
+        return <ForgotPasswordPage onGoToLogin={() => setAuthPage('login')} />;
+      default:
+        return (
+          <LoginPage 
+            onLogin={handleLogin} 
+            onGoToRegister={() => setAuthPage('register')}
+            onGoToForgotPassword={() => setAuthPage('forgot-password')}
+          />
+        );
+    }
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <Header
@@ -57,6 +105,7 @@ const SurakshaKavach = () => {
         setEditedProfile={setEditedProfile}
         saveProfile={saveProfile}
         cancelEdit={cancelEdit}
+        onLogout={handleLogout}
       />
       
       <div className="flex h-[calc(100vh-80px)]">

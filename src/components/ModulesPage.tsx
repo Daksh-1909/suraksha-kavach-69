@@ -12,7 +12,7 @@ import {
   Trophy,
   Star
 } from 'lucide-react';
-import ModuleContent from './ModuleContent';
+import EnhancedModuleContent from './EnhancedModuleContent';
 
 const ModulesPage = () => {
   const [selectedModule, setSelectedModule] = useState<string | null>(null);
@@ -120,7 +120,7 @@ const ModulesPage = () => {
 
   if (selectedModule) {
     return (
-      <ModuleContent 
+      <EnhancedModuleContent 
         moduleId={selectedModule} 
         onComplete={() => handleModuleComplete(selectedModule)}
         onBack={() => setSelectedModule(null)}
@@ -133,7 +133,7 @@ const ModulesPage = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground mb-2">Learning Modules</h1>
-          <p className="text-muted-foreground">Interactive disaster preparedness training with quizzes and simulations</p>
+          <p className="text-muted-foreground">Interactive disaster preparedness training with videos, simulations, activities, and assessments</p>
         </div>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">

@@ -17,6 +17,7 @@ interface HeaderProps {
   setEditedProfile: (profile: any) => void;
   saveProfile: () => void;
   cancelEdit: () => void;
+  onLogout: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -26,7 +27,8 @@ const Header: React.FC<HeaderProps> = ({
   editedProfile,
   setEditedProfile,
   saveProfile,
-  cancelEdit
+  cancelEdit,
+  onLogout
 }) => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showSettingsDropdown, setShowSettingsDropdown] = useState(false);
@@ -61,6 +63,13 @@ const Header: React.FC<HeaderProps> = ({
                   </button>
                   <button className="w-full text-left px-3 py-2 rounded-md hover:bg-subtle-hover text-sm">
                     Privacy Settings
+                  </button>
+                  <div className="border-t border-subtle-border my-2"></div>
+                  <button 
+                    onClick={onLogout}
+                    className="w-full text-left px-3 py-2 rounded-md hover:bg-destructive/10 text-sm text-destructive"
+                  >
+                    Logout
                   </button>
                 </div>
               </div>
